@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ["php83", "nodejs_20", "composer"]
+
+[phases.build]
+cmds = ["composer install --no-dev --optimize-autoloader", "php artisan optimize", "npm ci && npm run build"]
+
+[staticAssets]
+destination = "/public"
+
+[nginx.template.conf]
+# Custom nginx to fix duplicates; copy from Coolify Laravel example []
